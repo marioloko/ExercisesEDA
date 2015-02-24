@@ -70,5 +70,29 @@ public class Test{
 		for(int pos=0;pos<listIntegers.even().length;pos++){
 			System.out.println(listIntegers.even()[pos]);
 		}
+		SListCircular<Integer> circularList = new SListCircular<Integer>();
+		for(int pos=0;pos<10;pos++){
+			circularList.addFirst(pos);
+		}
+//		circularList.printList();
+		SListCircular<Integer> circList = new SListCircular<Integer>();
+		for(int pos=0;pos<10;pos++){
+			circList.addLast(pos);
+		}
+//		for(int pos=0;pos<10;pos++){
+//			circList.removeFirst();
+//		}
+		circList.removeFirst();
+		circList.removeFirst();
+//		circList.printList();
+		circList.insertAt(9, 4);
+//		circList.removeLast();
+//		for(int pos=0;pos<10;pos++){
+//			circList.removeLast();
+//		}
+//		circList.removeLast();
+//		circList.removeAll(2);
+//		circList.printList();
+		System.out.println(circList.contains(9));
 	}
 }

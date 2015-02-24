@@ -5,7 +5,7 @@ import edalib.list.interfaces.IList;
 public class SList<E> implements IList<E> {
 
 	protected SNode<E> firstNode = null; //Create a pointer to the first node
-	
+	protected int size;
 	
 	public SList(){
 		firstNode=null; //At the begining there is any node
@@ -18,6 +18,7 @@ public class SList<E> implements IList<E> {
 	public SNode<E> getFirstNode() {
 		return firstNode;  //Return the first node of the list
 	}
+	
 
 	@Override
 	public void addFirst(E newElem) {
