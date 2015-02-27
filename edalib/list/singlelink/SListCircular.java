@@ -85,16 +85,12 @@ public class SListCircular<E> extends SList<E> {
 				contains = true;
 			}
 			else{ //If the first element is not equal to the given element check for the other elements
-				while(lastNode.getNextNode()!=this.getFirstNode() && !contains){
-					if(elem.equals(lastNode.getElement())){
+				do{
+					if(elem.equals(lastNode.getNextNode().getElement())){
 						contains = true;
 					}
 					lastNode = lastNode.getNextNode();
-				}
-				if(elem.equals(lastNode.getElement())){ //If the last node element is equal to te given element then it contain the element
-					contains = true;
-				}
-
+				}while(lastNode.getNextNode()!=this.getFirstNode() && !contains);
 			}
 		}
 		return contains; //Return if the list contain an element
@@ -130,6 +126,142 @@ public class SListCircular<E> extends SList<E> {
 				}
 				lastNode = lastNode.getNextNode();
 			}while(lastNode!=null && lastNode.getNextNode()!=this.getFirstNode());
+		}
+	}
+	
+	@Override
+	public void removeAt(int index){
+		if(!this.isEmpty()){ //If the list is not empty then remove the node at that position
+			if(index==0){ //If the index is 0 then remove the first element
+				this.removeFirst();
+			}
+			else{ //If the index is different from zero then go to the previous node to the desired index and remove the following element
+				SNode<E> lastNode = this.getFirstNode();
+				int indexPos = 1;
+				for(;indexPos<index && lastNode.getNextNode().getNextNode()!=this.getFirstNode();indexPos++){
+					lastNode = lastNode.getNextNode();
+				}
+				if(indexPos!=index){
+					System.out.println("ERROR: Index out of bounds.");
+					return;
+				}
+				lastNode.setNextNode(lastNode.getNextNode().getNextNode()); //Link the previous node of the given index with the following node to the given index
+			}
+		}
+	}
+	
+	@Override
+	public int getSize(){
+		int size = 0; //By default there is no element in the list
+		if(!this.isEmpty()){ //If the list is not empty then at lest there is an element inside
+			SNode<E> lastNode = this.getFirstNode();
+			size = 1;
+			while(lastNode.getNextNode()!=this.getFirstNode()){ //While the node is not the last go to the last counting the size
+				lastNode = lastNode.getNextNode();
+				size++; 
+			}
+		}
+		return size;//Return the number of node of the list
+	}
+	
+	@Override
+	public int getIndexOf(E elem){
+		int index = -1; //By default the element is not in the list
+		if(!this.isEmpty()){ //If the list is not empty check for all the elements
+			SNode<E> lastNode = this.getFirstNode();
+			if(elem.equals(lastNode.getElement())){ //If the firstNode is equal to the eleme the index will be 0
+				index = 0;
+			}
+			else{
+				int position = 1; 
+				while(lastNode.getNextNode()!=this.getFirstNode()){//Check if every element if the node is equal to the given element
+					if(elem.equals(lastNode.getNextNode().getElement())){ //If the following element is equal to the elem then the position is equal to the index of the next position
+						index = position;
+					}
+					position++; //Increset the actual position
+					lastNode = lastNode.getNextNode(); //Now the lastNode is the following node
+				}
+			}
+		}
+		return index; //Return the index of that index
+	}
+	
+	@Override
+	public E getLast(){
+		E elem = null; 
+		if(!this.isEmpty()){//If the list is no null go to the last element
+			SNode<E> lastNode = this.getFirstNode();
+			while(lastNode.getNextNode()!=this.getFirstNode()){
+				lastNode = lastNode.getNextNode();
+			}
+			elem = lastNode.getElement(); //Store the element of the lastNode
+		}
+		return elem; //Return the last node element
+	}
+	
+	@Override
+	public E getAt(int index){
+		E elem = null;
+		if(index<0){ //If the index is lower than zero return an error
+			System.out.println("ERROR:Index out of bounds.");
+			return elem;
+		}
+		else if(!this.isEmpty()){ //If there is no error and the list is not empty search the element of the given index
+			if(index==0){ //If the index is 0 return the element at the first position
+				elem = this.getFirstNode().getElement();
+			}
+			else{ //Else go to the previous position to the given index
+				SNode<E> lastNode = this.getFirstNode();
+				for(int pos=1; pos<index;pos++){
+					lastNode = lastNode.getNextNode(); 
+				}
+				elem = lastNode.getNextNode().getElement(); //Store the position of the element at that index
+			}
+		}
+		return elem; //Return the element at that index
+	}
+	
+	@Override
+	public String toString(){
+		String str = null; //By default does not return anything
+		if(!this.isEmpty()){ //If the list is not empty add each node element separated with an space to the returning string
+			SNode<E> lastNode = this.getFirstNode();
+			str = lastNode.getElement()+" ";
+			do{
+				str += lastNode.getNextNode().getElement()+" ";
+				lastNode = lastNode.getNextNode();
+			}while(lastNode.getNextNode()!=this.getFirstNode());
+			str += "-> cyclic";
+		}
+		return str; //Return the string with all the elements
+	}
+	
+	@Override
+	public void printList(){
+		if(!this.isEmpty()){ //If the list is not empty print all the values separated by spaces
+			SNode<E> lastNode = this.getFirstNode();
+			System.out.print(lastNode.getElement()+" ");
+			while(lastNode.getNextNode()!=this.getFirstNode()){
+				System.out.print(lastNode.getNextNode().getElement()+" ");
+				lastNode = lastNode.getNextNode();
+			}
+			System.out.println("-> cyclic");
+		}
+	}
+	
+	/**
+	 * Print all the elements until it reach the given element
+	 * @param index
+	 */
+	public void printUntil(int index){
+		if(!this.isEmpty()){
+			SNode<E> lastNode = this.getFirstNode();
+			System.out.print(lastNode.getElement()+" ");
+			for(int indexPos=1;indexPos<=index;indexPos++){//While the actual position is lower than the given index print all his elements
+				lastNode = lastNode.getNextNode();
+				System.out.print(lastNode.getElement()+ " ");
+			}
+			System.out.println();
 		}
 	}
 }

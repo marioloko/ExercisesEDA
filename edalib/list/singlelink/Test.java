@@ -92,7 +92,18 @@ public class Test{
 //		}
 //		circList.removeLast();
 //		circList.removeAll(2);
+		circList.removeAt(7);
 //		circList.printList();
-		System.out.println(circList.contains(9));
+		System.out.println(circList.contains(10));
+		System.out.println(circList.getIndexOf(7));
+		System.out.println(circList.getLast());
+		System.out.println(circList.getAt(7));
+//		for(int pos=0;pos<7;pos++){
+//			circList.removeLast();
+//		}
+		System.out.println(circList.getSize());
+		System.out.println(circList);
+		circList.printList();
+		circList.printUntil(10);
 	}
 }
