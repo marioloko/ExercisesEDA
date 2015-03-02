@@ -9,6 +9,7 @@ public class Test{
 		list.insertAt(0, 5);
 		list.printList();
 		System.out.println(list.contains(11));
+		System.out.println("Removing last");
 		list.removeLast();
 		list.removeLast();
 		list.printList();

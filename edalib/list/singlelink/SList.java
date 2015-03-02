@@ -80,7 +80,7 @@ public class SList<E> implements IList<E> {
 		boolean contains = false;//By default the list does not contain a node with the given element
 		if(!this.isEmpty()){//If the list is not empty continue checking
 			SNode<E> actualNode = this.getFirstNode(); //Create an actual node where store the the node in which the list is at that moment
-			while(actualNode!=null){ //Check for all the element's nodes of the list if are equal to the element enter as parameter 
+			while(actualNode!=null && !contains){ //Check for all the element's nodes of the list if are equal to the element enter as parameter 
 				if(actualNode.getElement().equals(elem)){
 					contains=true;
 				}
