@@ -10,7 +10,7 @@ public class ArrayQueue<E> implements IQueue<E> {
 	int absoluteTop; //Position of the next element that will leave the queue (Absolute position, independent from the array)
 	int absoluteTail; //Next position of the element that will be inserted in the queue (Absolute position, independent from the array)
 	public ArrayQueue(int N) {
-		queue =(E[]) new Object[N];
+		queue =(E[]) new Object[N];A
 		top=0;
 		tail=0;
 		this.absoluteTop = top; //We initialize the absoluteTop as the same way as the relative top
