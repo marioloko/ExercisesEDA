@@ -1,9 +1,9 @@
 package company;
 
 public class Employee{
-	int cod_employee; //The Employeer code
-	String name; //The Employer name
-	String surname; //The Employer surname
+	private int cod_employee; //The Employeer code
+	private String name; //The Employer name
+	private String surname; //The Employer surname
 	
 	/**By default will create me as Employee: Adrian Gallego, with code 12345678*/
 	public Employee(){

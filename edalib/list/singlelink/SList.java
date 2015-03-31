@@ -15,7 +15,7 @@ public class SList<E> implements IList<E> {
 	 * Return the actual first node of the list
 	 * @return
 	 */
-	public SNode<E> getFirstNode() {
+	SNode<E> getFirstNode() {
 		return firstNode;  //Return the first node of the list
 	}
 	

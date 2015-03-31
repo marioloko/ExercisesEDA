@@ -2,8 +2,8 @@ package company;
 import java.util.ArrayList;
 
 public class Company{
-	String name; //name of the company
-	ArrayList<Employee> employeesList; //List of the employees of that company
+	private String name; //name of the company
+	private ArrayList<Employee> employeesList; //List of the employees of that company
 	
 	/**The default constructor create the UC3M company*/
 	public Company(){
