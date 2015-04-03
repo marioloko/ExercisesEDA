@@ -49,7 +49,7 @@ public class ReversedSList{
 			return;
 		}
 		
-		if(init < end){ //If t
+		if(init < end){ 
 			
 			//Store the initial and final variable in an auxiliar variables
 			Character oldInit = new Character(characterList.getAt(init));
